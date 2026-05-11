@@ -6,6 +6,8 @@ Interviews you relentlessly about a plan, design, or proposal — branch by bran
 
 ![pressure-test in action](../../assets/pressure-test-demo.png)
 
+*Curious about the status bar on the screenshot above? Check it out [here](https://github.com/bitcoin21ideas/claude-statusline)*
+
 ## What it does
 
 You describe a plan. The skill picks the first unresolved decision node, recommends an answer with brief reasoning, then asks you to confirm or override. It works down the decision tree until every meaningful branch is settled or you call it done. At the end it produces a written summary: every decision made, open questions, and recommended next actions.
@@ -46,6 +48,8 @@ Choose at the start of the session:
 | Exhaustive teardown | 50+ | You want every branch resolved before committing |
 
 In exhaustive mode, the skill recaps locked-in decisions every 20 questions. Quick and standard modes skip the recap — they're short enough not to need it.
+
+![running summary showcase](../../assets/running-summary.png)
 
 ## Sample sessions
 
