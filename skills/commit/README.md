@@ -34,6 +34,7 @@ The agent follows [`tailoring.md`](./tailoring.md): it fetches the template, det
 | --- | --- |
 | [`SKILL.md`](./SKILL.md) | The skill — generic template, also the thing that gets tailored |
 | [`tailoring.md`](./tailoring.md) | Build-time playbook: detect a project's realities and install a tailored copy |
+| [`examples/`](./examples/) | Sample sessions — a standard multi-commit grouping, and the secret scan stopping a commit |
 
 ## Install
 
