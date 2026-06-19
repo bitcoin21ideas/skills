@@ -1,0 +1,28 @@
+name: Publish skills
+
+# Push a semver tag to publish a release:
+#
+#   git tag v1.1.0 && git push --tags
+#
+# `gh skill publish` re-validates every skill against the Agent Skills spec
+# before releasing (so a malformed skill blocks the release just as it blocks a
+# PR), then creates a GitHub release with auto-generated notes for the tag.
+on:
+  push:
+    tags:
+      - "v*"
+
+# contents: write lets gh create the release for the pushed tag.
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish release for ${{ github.ref_name }}
+        run: gh skill publish --tag "$GITHUB_REF_NAME"
+        env:
+          GH_TOKEN: ${{ github.token }}

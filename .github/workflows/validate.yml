@@ -1,0 +1,30 @@
+name: Validate skills
+
+# Validates every skill against the Agent Skills spec (https://agentskills.io)
+# using the same checks `gh skill install` enforces: each skill's name matches
+# its directory, required frontmatter (name, description) is present,
+# `allowed-tools` is a string (not an array), and no install metadata is
+# committed. Runs on every PR and push to main so a malformed SKILL.md fails
+# fast. Reproduce locally with:  gh skill publish --dry-run
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: gh version (gh skill needs >= 2.90.0)
+        run: gh --version
+
+      - name: Validate skills against the Agent Skills spec
+        run: gh skill publish --dry-run
+        env:
+          GH_TOKEN: ${{ github.token }}
