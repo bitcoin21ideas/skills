@@ -6,7 +6,7 @@
 
 A collection of agent skills for Claude Code, Codex, Copilot, and other AI coding assistants.
 
-> [!NOTE]
+> [!NOTE]  
 > These skills are designed to be useful across agents. Unknown frontmatter fields (like `disable-model-invocation`) are ignored per the agentskills.io standard, so Claude-Code-specific fields are safe to include in any compliant agent.
 
 ## Skills
@@ -14,7 +14,8 @@ A collection of agent skills for Claude Code, Codex, Copilot, and other AI codin
 | Skill | Description |
 | --- | --- |
 | [pressure-test](skills/pressure-test/README.md) | Interviews you relentlessly about a plan, branch by branch, and ends with a consolidated decision artifact. |
-| new skills to come | More skills are planned to populate this repo. Keep an eye out. | 
+| [commit](skills/commit/README.md) | Project-agnostic git commit workflow — triages secrets, runs the project's test/lint gate, groups changes, and writes conventional commits after you approve. Tailorable per project. |
+| more skills to come | More skills are planned to populate this repo. Keep an eye out. |
 
 ## Install
 
@@ -57,10 +58,19 @@ Reload the workspace. Cursor loads skills dynamically based on relevance — `di
 
 ## Cross-agent compatibility note
 
-The `disable-model-invocation: true` frontmatter field prevents Claude Code and Copilot from auto-invoking skills based on the description — the user must call them explicitly. Agents that don't recognize the field ignore it safely, falling back to description-based triggering. Skill descriptions in this repo are phrased with explicit user-action triggers ("when the user says...") to minimize spurious auto-invocations even in those agents.
+The `disable-model-invocation: true` frontmatter field prevents Claude Code and Copilot from auto-invoking a skill based on its description — the user must call it explicitly. Agents that don't recognize the field ignore it safely, falling back to description-based triggering.
+
+Invocation mode is chosen per skill:
+
+- **`pressure-test`** is explicit-only (`disable-model-invocation: true`) — you rarely want to be auto-grilled.
+- **`commit`** is both user- and model-invocable (no such field) — natural-language requests like "commit this" can trigger it, and it always proposes a plan and waits for approval before committing, so the model can never make a surprise commit.
+
+Either way, skill descriptions are phrased with explicit user-action triggers ("when the user says...") so even agents that ignore the field don't fire them spuriously.
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
 
 Issues welcome. PRs at my discretion.
+
+> _Commits in this repo are made with its own [`commit`](skills/commit/README.md) skill._
