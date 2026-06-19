@@ -1,1 +1,5 @@
 .DS_Store
+
+# Personal / local agent config — not shared (this repo keeps nothing shared in .claude/)
+.claude/
+CLAUDE.local.md
