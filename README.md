@@ -15,48 +15,60 @@ A collection of agent skills for Claude Code, Codex, Copilot, and other AI codin
 | --- | --- |
 | [pressure-test](skills/pressure-test/README.md) | Interviews you relentlessly about a plan, branch by branch, and ends with a consolidated decision artifact. |
 | [commit](skills/commit/README.md) | Project-agnostic git commit workflow — triages secrets, runs the project's test/lint gate, groups changes, and writes conventional commits after you approve. Tailorable per project. |
-| more skills to come | More skills are planned to populate this repo. Keep an eye out. |
 
 ## Install
 
+Three ways, easiest first: the **GitHub CLI** (one command, cross-agent), **ask your agent**, or **by hand**.
+
+### GitHub CLI — `gh skill` (recommended)
+
+[`gh skill`](https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli/) (GitHub CLI ≥ 2.90.0) installs a skill into whichever agent you use — Claude Code, Copilot, Cursor, Codex, or Gemini CLI — resolving the right location for you and recording where it came from:
+
+```sh
+gh skill preview bitcoin21ideas/skills pressure-test   # inspect first
+gh skill install bitcoin21ideas/skills pressure-test   # then install
+```
+
+Swap `pressure-test` for any skill in the table above. Skills aren't verified by GitHub, so `preview` before you install.
+
+### Ask your agent
+
+No CLI? Hand your agent the skill's folder URL and ask it to install:
+
+> I like this skill — install it in my project:
+> https://github.com/bitcoin21ideas/skills/tree/main/skills/pressure-test
+
+This needs an agent that can fetch a URL — **Claude Code** and **Gemini CLI** do by default; **Cursor** and **Copilot** may need web access turned on; **Codex CLI** needs a fetch tool (MCP) wired up. Tell it two things: a skill is a multi-file *folder* (not one file), and read the **raw** files (`raw.githubusercontent.com`), not the rendered `blob` page. On a model with no skills runtime (a bare Kimi / OpenAI-compatible endpoint), just paste `SKILL.md` into your system prompt.
+
+### By hand
+
 ```sh
 git clone https://github.com/bitcoin21ideas/skills.git
+cd skills
 ```
 
-### Claude Code
+Drop a skill folder where your agent looks. `.agents/skills/` is the vendor-neutral location honored by Codex, Cursor, Gemini, and Copilot:
 
 ```sh
-# User-level (available in all projects)
-ln -s "$PWD/skills/skills/pressure-test" ~/.claude/skills/pressure-test
-
-# Project-level
-ln -s "$PWD/skills/skills/pressure-test" .claude/skills/pressure-test
+ln -s "$PWD/skills/pressure-test" .agents/skills/pressure-test      # project-level
+ln -s "$PWD/skills/pressure-test" ~/.agents/skills/pressure-test    # user-level
 ```
 
-Then invoke with `/pressure-test` in the Claude Code prompt.
+Prefer an agent-specific home?
 
-### Codex CLI
+| Agent | Project path | User path | Invoke |
+| --- | --- | --- | --- |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` | `/pressure-test` |
+| Codex CLI | `.agents/skills/` | `~/.agents/skills/` | `$pressure-test` |
+| Cursor | `.cursor/skills/` | `~/.cursor/skills/` | `/` menu |
+| Copilot (VS Code) | `.github/skills/` | `~/.copilot/skills/` | `/pressure-test` |
+| Gemini CLI | `.gemini/skills/` | `~/.gemini/skills/` | `/skills` |
 
-```sh
-ln -s "$PWD/skills/skills/pressure-test" ~/.codex/skills/pressure-test
-```
-
-Invoke with `$pressure-test` or let Codex auto-select based on the description.
-
-### VS Code (Copilot)
-
-Place the `skills/pressure-test` folder in your workspace at `.github/skills/pressure-test`, or in your user-level skills directory per Copilot's documentation.
-
-### Cursor
-
-```sh
-# Project-level
-cp -r "$PWD/skills/skills/pressure-test" .cursor/skills/pressure-test
-```
-
-Reload the workspace. Cursor loads skills dynamically based on relevance — `disable-model-invocation` is not honored. For explicit-only control, place the folder outside `.cursor/skills/` (e.g. `.cursor/pressure-test/`) and `@`-mention `SKILL.md` in chat when needed. See the [per-skill README](skills/pressure-test/README.md) for details.
+Most agents also auto-load a skill when its description matches, so explicit invocation is optional.
 
 ## Cross-agent compatibility note
+
+As of June 2026 the [Agent Skills standard](https://agentskills.io) is natively supported across the major coding agents (Claude Code, Codex, Cursor, Copilot, Gemini CLI, and dozens more), so these skills are portable without per-agent rewrites.
 
 The `disable-model-invocation: true` frontmatter field prevents Claude Code and Copilot from auto-invoking a skill based on its description — the user must call it explicitly. Agents that don't recognize the field ignore it safely, falling back to description-based triggering.
 
@@ -67,10 +79,12 @@ Invocation mode is chosen per skill:
 
 Either way, skill descriptions are phrased with explicit user-action triggers ("when the user says...") so even agents that ignore the field don't fire them spuriously.
 
+## Contributing
+
+This repo is agent-first. The easiest way to add or fix a skill is to ask your coding agent: point it at [`AGENTS.md`](AGENTS.md), describe the change, and have it open a PR. See [`AGENTS.md`](AGENTS.md) for the layout and conventions. Issues and PRs welcome — from an agent or by hand.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
-Issues welcome. PRs at my discretion.
 
 > _Commits in this repo are made with its own [`commit`](skills/commit/README.md) skill._
