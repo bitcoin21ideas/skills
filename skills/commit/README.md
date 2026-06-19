@@ -16,7 +16,7 @@ Both user- and model-invocable — call it explicitly with `/commit`, or let you
 
 ## Use it as a generic skill
 
-The bundled [`SKILL.md`](./SKILL.md) works on any repo as-is — it detects the gate (npm scripts, `make`, `cargo`, `pytest`, …) at runtime. Drop it into your project's `.claude/skills/commit/` (or symlink it) and call `/commit`.
+The bundled [`SKILL.md`](./SKILL.md) works on any repo as-is — it detects the gate (npm scripts, `make`, `cargo`, `pytest`, …) at runtime. Install it with `gh skill install bitcoin21ideas/skills commit` (or drop the folder into `.claude/skills/commit/`), then call `/commit`.
 
 ## Or tailor it to one project (recommended)
 

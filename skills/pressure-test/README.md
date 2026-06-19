@@ -35,7 +35,21 @@ Ad-hoc "what do you think of my plan?" prompts produce encouraging summaries. Th
 
 ## Install
 
-See the [repo-level README](../../README.md) for install paths per agent.
+**GitHub CLI (recommended)** — installs into whichever agent you use:
+
+```sh
+gh skill preview bitcoin21ideas/skills pressure-test   # inspect
+gh skill install bitcoin21ideas/skills pressure-test   # install
+```
+
+**Ask your agent** — point it at this folder; `pressure-test` installs as-is, no tailoring:
+
+> I like this skill — add it to my project:
+> https://github.com/bitcoin21ideas/skills/tree/main/skills/pressure-test
+
+(Needs an agent that can fetch URLs — Claude Code and Gemini CLI do by default. Have it read the **raw** `SKILL.md` into `.agents/skills/pressure-test/`; `examples/` are optional.)
+
+**By hand** — see the [repo-level README](../../README.md#install) for per-agent paths.
 
 ## Modes
 
