@@ -11,7 +11,6 @@ skills/<name>/
   SKILL.md      # required — the skill itself (the agent-facing instructions)
   README.md     # required — human-facing overview, install, examples
   examples/     # optional — sample sessions or supporting docs
-.claude-plugin/ # optional — plugin manifest (not present yet)
 ```
 
 Each skill is a self-contained folder under `skills/`. Keep skills independent — a user should be able to take one folder without the rest.
@@ -27,15 +26,12 @@ Each skill is a self-contained folder under `skills/`. Keep skills independent �
 - **Progressive disclosure.** Keep `SKILL.md` focused; move long or rarely-needed detail into sibling files (e.g. `tailoring.md`, `examples/`) that the agent loads only when relevant.
 - **Every promoted skill must be listed in the root [`README.md`](./README.md) skills table**, with the name linked to its per-skill `README.md`.
 
-## Commit conventions
+## Contributing
 
-- Commits in this repo are made with its own [`commit`](./skills/commit/README.md) skill: conventional-commit messages, logical grouping, approval before committing.
-- `type(scope): lowercase imperative subject`, no trailing period.
-- **No em dashes** in commit messages. **Never** add a `Co-Authored-By` trailer or mention Claude, Anthropic, or any AI agent in a commit message.
-- Never use `--no-verify` or bypass hooks.
+This repo is agent-first: the easiest way to add or fix a skill is to ask your coding agent. Point it at this file, describe the change ("read AGENTS.md and add a skill that …"), let it follow the conventions above, then have it open a PR. Contributions are welcome from any agent or by hand.
 
-## What not to commit
+A skill contribution should:
 
-- Personal/local config: `.claude/settings.local.json`, `CLAUDE.local.md`.
-- OS cruft: `.DS_Store`.
-- See [`.gitignore`](./.gitignore).
+- Live in a self-contained `skills/<name>/` folder with `SKILL.md` + `README.md` (per the layout above).
+- Use cross-agent frontmatter and appear in the root [`README.md`](./README.md) skills table.
+- Be committed using this repo's [`commit`](./skills/commit/README.md) skill, which owns the message conventions.
