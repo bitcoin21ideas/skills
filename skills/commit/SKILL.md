@@ -1,6 +1,7 @@
 ---
 name: commit
 description: Multi-step git commit workflow. Gathers state, triages sensitive content and secrets, groups changes into logical units, runs the project's test/lint gate, proposes a plan for approval, and commits with conventional messages and no AI attribution. Use when changes need to be committed — when the user says "commit", "/commit", or asks to commit staged or working-tree changes. Both user- and model-invocable.
+license: MIT
 metadata:
   version: "1.0.0"
   author: "bitcoin21ideas"

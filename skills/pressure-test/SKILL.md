@@ -2,6 +2,7 @@
 name: pressure-test
 description: Interviews the user relentlessly about a plan, design, or proposal until shared understanding is reached, walking the decision tree branch by branch and resolving dependencies one at a time. Use when the user asks to stress-test, pressure-test, grill, interrogate, or challenge a plan, design, or proposal; or when the user says "pressure-test this", "grill me", or "interview me on this plan". Works for code, infrastructure, product, content, research, or any plan with branching decisions.
 disable-model-invocation: true
+license: MIT
 metadata:
   version: "1.0.0"
   author: "bitcoin21ideas"
