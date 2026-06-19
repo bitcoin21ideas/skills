@@ -1,7 +1,7 @@
 # skills
 
 [![License](https://img.shields.io/badge/License-MIT-1f6feb?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.0-1f6feb?style=for-the-badge)](skills/pressure-test/SKILL.md)
+[![Release](https://img.shields.io/github/v/release/bitcoin21ideas/skills?style=for-the-badge&label=Release&color=1f6feb)](https://github.com/bitcoin21ideas/skills/releases/latest)
 [![Zap me a coffee](https://img.shields.io/badge/Zap_me_a_coffee-⚡-orange?style=for-the-badge)](https://zapmeacoffee.com/npub10awzknjg5r5lajnr53438ndcyjylgqsrnrtq5grs495v42qc6awsj45ys7)
 
 A collection of agent skills for Claude Code, Codex, Copilot, and other AI coding assistants.
@@ -18,6 +18,9 @@ A collection of agent skills for Claude Code, Codex, Copilot, and other AI codin
 
 ## Install
 
+> [!IMPORTANT]
+> A skill is instructions your agent runs on your behalf — anyone can publish one, and GitHub doesn't verify them. Inspect before you install: `gh skill preview bitcoin21ideas/skills <name>`, or read the skill's `SKILL.md` on GitHub. The skills here are MIT-licensed and meant to be auditable; apply the same caution to skills from anywhere.
+
 Three ways, easiest first: the **GitHub CLI** (one command, cross-agent), **ask your agent**, or **by hand**.
 
 ### GitHub CLI — `gh skill` (recommended)
@@ -29,7 +32,7 @@ gh skill preview bitcoin21ideas/skills pressure-test   # inspect first
 gh skill install bitcoin21ideas/skills pressure-test   # then install
 ```
 
-Swap `pressure-test` for any skill in the table above. Skills aren't verified by GitHub, so `preview` before you install.
+Swap `pressure-test` for any skill in the table above.
 
 ### Ask your agent
 
