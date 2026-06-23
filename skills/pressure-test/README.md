@@ -10,7 +10,7 @@ Interviews you relentlessly about a plan, design, or proposal — branch by bran
 
 ## What it does
 
-You describe a plan. The skill picks the first unresolved decision node, recommends an answer with brief reasoning, then asks you to confirm or override. It works down the decision tree until every meaningful branch is settled or you call it done. At the end it produces a written summary: every decision made, open questions, and recommended next actions.
+You describe a plan. The skill picks the first unresolved decision node, recommends an answer with brief reasoning, then asks you to confirm or override. It works down the decision tree until every meaningful branch is settled or you call it done. At the end it produces a written summary: every decision made, open questions, and recommended next actions — and, with your consent, saves those decisions to a `.decisions.md` file you can hand straight to [`to-plan`](../to-plan/README.md).
 
 ## Why
 
@@ -90,4 +90,5 @@ In exhaustive mode, the skill recaps locked-in decisions every 20 questions. Qui
 
 ## Changelog
 
+- **1.1.0** — After the closing question, the skill offers (consent-gated, never automatic) to save the session's distilled decisions — each with its rationale and rejected alternatives — to a `./<slug>.decisions.md` file, ready to hand to [`to-plan`](../to-plan/README.md).
 - **1.0.0** — Initial public release. Adapted from the original [grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) skill by Matt Pocock. Additions: depth calibration (quick / standard / exhaustive), recommendation-first format, codebase-first answering, summary checkpoints in exhaustive mode, consolidated plan output.
