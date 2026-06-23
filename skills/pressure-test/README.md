@@ -80,6 +80,14 @@ In exhaustive mode, the skill recaps locked-in decisions every 20 questions. Qui
 - The skill **recommends before asking**. If you want pure open-ended interviewing with no leading answers, adjust the skill or ask your agent to do it.
 - In agents that don't honor `disable-model-invocation`, the skill may auto-invoke on phrases like "pressure-test this" or "grill me". The description is tuned to user-action phrases specifically to limit this.
 
+## Pairs with
+
+- **[to-plan](../to-plan/README.md)** — synthesizes this session's decisions into an
+  implementation-grade `plan.md`. If you saved a `.decisions.md` at the end of this
+  session, pass it to `to-plan` in a fresh session.
+- **[plan-clash](../plan-clash/README.md)** — hardens the plan `to-plan` produces. Run
+  it after `to-plan`, not after `pressure-test` directly.
+
 ## Changelog
 
 - **1.0.0** — Initial public release. Adapted from the original [grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) skill by Matt Pocock. Additions: depth calibration (quick / standard / exhaustive), recommendation-first format, codebase-first answering, summary checkpoints in exhaustive mode, consolidated plan output.

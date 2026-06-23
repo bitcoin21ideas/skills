@@ -4,7 +4,7 @@ description: Interviews the user relentlessly about a plan, design, or proposal 
 disable-model-invocation: true
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: "bitcoin21ideas"
   source: "Adapted from the original grill-me skill by Matt Pocock"
 ---
@@ -68,3 +68,37 @@ Then close with this exact question — no variations, no assumed approval:
 **"Does this plan satisfy you? Should I implement it now?"**
 
 Do not begin implementation until the user answers yes to both. The interview is the means; the consolidated plan is the deliverable.
+
+## 9. Offer to save the decisions (after §8 is answered)
+
+Only **after** the user has responded to the §8 question, ask one final question:
+
+**"Do you want to save this session's decisions to a file?
+Default: `./<slug>.decisions.md` (where slug is derived from the topic).
+Reply yes, no, or give a different path."**
+
+- If the user says **no**: do nothing. Do not create the file.
+- If the user says **yes** (or gives a path): write the file, then tell the user
+  exactly where it landed.
+
+This is consent-gated — never auto-save and never write mid-session. The file lands
+next to the working directory (not in `.claude/` or any hidden dir) so it is
+version-controllable and easy to hand to `to-plan`.
+
+### What to write
+
+Distill — do **not** dump the raw Q&A. Every settled decision already appears in the
+§8 plan; the raw back-and-forth is high-noise. But bare decisions strip the rationale
+that `to-plan` needs to make correct implementation choices, so keep the *why*.
+
+Write a `.decisions.md` containing:
+
+- **frontmatter:** `slug`, `date`, the `depth-mode` used, and the count of open
+  questions;
+- **for each settled decision:** the decision + a one-line why + the rejected
+  alternative and why it lost (when one was considered);
+- **open questions / deferred items**, each explicitly labelled `deferred:`;
+- **recommended next actions**, carried from §8.
+
+This file is the handoff to `to-plan`, which synthesizes it into an implementation
+plan.
