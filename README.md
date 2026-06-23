@@ -14,6 +14,8 @@ A collection of agent skills for Claude Code, Codex, Copilot, and other AI codin
 | Skill | Description |
 | --- | --- |
 | [pressure-test](skills/pressure-test/README.md) | Interviews you relentlessly about a plan, branch by branch, and ends with a consolidated decision artifact. |
+| [to-plan](skills/to-plan/README.md) | Synthesizes a decisions record and a repo read into a pure implementation plan on disk — file paths, modules, phase-gated slices, and anchored verification — shaped to be hardened by plan-clash. |
+| [plan-clash](skills/plan-clash/README.md) | Hardens an existing implementation plan by looping a Codex (GPT) critic and a Claude (opus) adjudicator over it for N rounds — cross-model, fresh-eyes review that improves the plan against the real code. Runs on CLI subscriptions; improves a plan, never certifies one. |
 | [commit](skills/commit/README.md) | Project-agnostic git commit workflow — triages secrets, runs the project's test/lint gate, groups changes, and writes conventional commits after you approve. Tailorable per project. |
 
 ## Install
@@ -78,6 +80,7 @@ The `disable-model-invocation: true` frontmatter field prevents Claude Code and 
 Invocation mode is chosen per skill:
 
 - **`pressure-test`** is explicit-only (`disable-model-invocation: true`) — you rarely want to be auto-grilled.
+- **`plan-clash`** is explicit-only (`disable-model-invocation: true`) — each run spawns long, subscription-billed CLI subprocesses, so it should fire only when you ask for it.
 - **`commit`** is both user- and model-invocable (no such field) — natural-language requests like "commit this" can trigger it, and it always proposes a plan and waits for approval before committing, so the model can never make a surprise commit.
 
 Either way, skill descriptions are phrased with explicit user-action triggers ("when the user says...") so even agents that ignore the field don't fire them spuriously.
