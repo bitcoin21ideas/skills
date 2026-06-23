@@ -4,9 +4,11 @@ name: Publish skills
 #
 #   git tag v1.1.0 && git push --tags
 #
-# `gh skill publish` re-validates every skill against the Agent Skills spec
-# before releasing (so a malformed skill blocks the release just as it blocks a
-# PR), then creates a GitHub release with auto-generated notes for the tag.
+# The workflow is triggered by the tag push, so the tag already exists when the
+# job runs. `gh skill publish --tag` would try to *create* that tag and fail, so
+# we instead re-validate every skill against the Agent Skills spec (a malformed
+# skill blocks the release just as it blocks a PR), then create a GitHub release
+# from the existing tag with auto-generated notes.
 on:
   push:
     tags:
@@ -22,7 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Publish release for ${{ github.ref_name }}
-        run: gh skill publish --tag "$GITHUB_REF_NAME"
+      - name: Validate skills
+        run: gh skill publish --dry-run
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Create release for ${{ github.ref_name }}
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
