@@ -5,6 +5,8 @@ Harden an existing implementation plan by running it through a fixed number of
 adversarial critic; a Claude model (via the `claude` CLI) plays the adjudicator that
 rules on each finding and folds the accepted fixes into a copy of the plan.
 
+> Don't ask one model if your plan is good. Make two of them fight over it.
+
 Two models with disjoint blind spots, fresh and stateless each round. The loop
 **improves** a plan; it deliberately does **not certify** one. There is no pass/fail,
 no green light, no stop condition — the human is the only judge of "good enough".
@@ -126,3 +128,7 @@ closer-than-usual read before trusting it. This is a known limitation, not a war
   `plan-clash` hardens. Run `to-plan` before `plan-clash`.
 - **[pressure-test](../pressure-test/README.md)** — the upstream interrogation skill.
   `pressure-test` → `to-plan` → `plan-clash` is the full pipeline.
+
+## Changelog
+
+- **1.1.0** — Initial public release. Fixed N-round cross-model critique→fold loop: a codex/GPT critic finds issues against the real code, a claude/opus adjudicator rules on each and folds accepted fixes into a copy of the plan. Includes read-only-by-assertion protection of the code_root, data-fenced untrusted inputs, per-round coverage/fold/size checks, a `--out` option, and a per-run trail under `~/.plan-clash/runs/`.
