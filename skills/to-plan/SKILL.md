@@ -13,27 +13,17 @@ metadata:
 
 # to-plan
 
-Turn a settled decisions record into a **pure implementation plan** on disk: file
-paths, modules, sequencing, verification — nothing at product or PRD altitude. The
-output is sized and structured to survive adversarial critique by `plan-clash`.
+Turn a settled decisions record into a **pure implementation plan** on disk: file paths, modules, sequencing, verification. The output is sized and structured to survive adversarial critique by `plan-clash`.
 
-You **synthesize**; you do not interrogate. Every claim you write must be grounded in
-the real codebase or in the decisions context you were given. An invented file path is
-a P0 finding waiting to happen — write only what you can stand behind.
+Every claim you write must be grounded in the real codebase or in the decisions context you were given. Write only what you can stand behind.
 
 ## 1. Collect the decisions context
 
 Accept the input from whichever source is available, in this order of preference:
 
-- the **live conversation** — if `pressure-test` (or any planning discussion) just ran
-  in this session, read it directly;
+- the **live conversation** — if any planning discussion just ran in this session, read it directly;
 - a **`.decisions.md` file** — if the user gives a path, read it;
 - **pasted prose** — if the user pastes a plan or set of decisions, use that.
-
-If none is available, ask the user to describe their plan before going further. Do
-**not** ask questions that the input already answers — your job is to synthesize, not
-to re-interview. Reserve any questions for genuine gaps only the user can fill: intent,
-priority, business constraints.
 
 ## 2. Explore the repo
 
@@ -41,13 +31,10 @@ Read the codebase to establish:
 
 - existing modules and files relevant to the plan, by **repo-relative path**;
 - patterns to follow — naming, structure, conventions;
-- the **test directory layout, the test command, and 1–2 exemplar test files** you will
-  anchor every slice's verification to;
+- the **test directory layout, the test command, and 1–2 exemplar test files** you will anchor every slice's verification to;
 - any ADRs or architectural decisions already on record.
 
-Verify the claims in the decisions context against the real code. Where the context
-contradicts what the repo actually shows, **note the contradiction** — do not silently
-paper over it.
+Verify the claims in the decisions context against the real code. Where the context contradicts what the repo actually shows, **note the contradiction** — do not silently paper over it.
 
 ## 3. Confirm module boundaries — the gate
 

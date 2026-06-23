@@ -1,19 +1,14 @@
 # to-plan
 
 Turns a settled set of decisions into a **pure implementation plan** on disk — file
-paths, modules, sequencing, and verification, with nothing at product/PRD altitude.
+paths, modules, sequencing, and verification.
 The output is shaped to be consumed immediately by [`plan-clash`](../plan-clash/README.md).
 
 > Distilled decisions in, a plan-clash-ready artifact out.
 
 ## What it does
 
-You hand it a decisions context. It reads the codebase, proposes the module
-boundaries, **pauses for your confirmation**, and then writes a single
-`./<slug>.plan.md`: overview, settled decisions, code orientation, architecture,
-ordered implementation slices (each one a session gate), end-to-end verification, and
-explicit out-of-scope and risk sections. It never interviews you and never writes code
-— the plan is the deliverable.
+You hand it a decisions context. It reads the codebase, proposes the module boundaries, **pauses for your confirmation**, and then writes a single `./<slug>.plan.md`: overview, settled decisions, code orientation, architecture, ordered implementation slices (each one a session gate), end-to-end verification, and explicit out-of-scope and risk sections. It never interviews you and never writes code — the plan is the deliverable.
 
 ## Why
 
