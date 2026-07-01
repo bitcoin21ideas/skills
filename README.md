@@ -17,6 +17,7 @@ A collection of agent skills for Claude Code, Codex, Copilot, and other AI codin
 | [to-plan](skills/to-plan/README.md) | Synthesizes a decisions record and a repo read into a pure implementation plan on disk — file paths, modules, phase-gated slices, and anchored verification — shaped to be hardened by plan-clash. |
 | [plan-clash](skills/plan-clash/README.md) | Hardens an existing implementation plan by looping a Codex (GPT) critic and a Claude (opus) adjudicator over it for N rounds — cross-model, fresh-eyes review that improves the plan against the real code. Runs on CLI subscriptions; improves a plan, never certifies one. |
 | [commit](skills/commit/README.md) | Project-agnostic git commit workflow — triages secrets, runs the project's test/lint gate, groups changes, and writes conventional commits after you approve. Tailorable per project. |
+| [next-slice](skills/next-slice/README.md) | Closes out a just-finished implementation slice and hands the next off to a fresh session — gates that the slice landed (clean tree, green build, committed), mines what the build revealed that reshapes the next slice, re-anchors the plan's stale references against current code, and emits a self-contained handoff prompt. |
 
 ## Install
 
