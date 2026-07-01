@@ -87,6 +87,8 @@ In exhaustive mode, the skill recaps locked-in decisions every 20 questions. Qui
   session, pass it to `to-plan` in a fresh session.
 - **[plan-clash](../plan-clash/README.md)** — hardens the plan `to-plan` produces. Run
   it after `to-plan`, not after `pressure-test` directly.
+- **[next-slice](../next-slice/README.md)** — furthest downstream: once you're building
+  the hardened plan, it hands off each slice to a fresh session.
 
 ## Changelog
 

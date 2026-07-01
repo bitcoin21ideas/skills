@@ -13,7 +13,7 @@ You hand it a decisions context. It reads the codebase, proposes the module boun
 ## Where it fits — the pipeline
 
 ```
-pressure-test (elicit)  →  to-plan (synthesize)  →  plan-clash (harden)
+pressure-test (elicit)  →  to-plan (synthesize)  →  plan-clash (harden)  →  build ⇄ next-slice
 ```
 
 - **[pressure-test](../pressure-test/README.md)** interrogates you branch by branch and
@@ -21,6 +21,8 @@ pressure-test (elicit)  →  to-plan (synthesize)  →  plan-clash (harden)
 - **to-plan** synthesizes those decisions plus a repo read into an implementation plan.
 - **[plan-clash](../plan-clash/README.md)** adversarially hardens that plan against the
   real code.
+- **[next-slice](../next-slice/README.md)** re-anchors this plan and hands off each slice
+  to a fresh session as you build.
 
 You don't need the whole pipeline — `to-plan` works from any decisions context, however
 you arrived at it.
@@ -77,6 +79,9 @@ gh skill install bitcoin21ideas/skills to-plan   # install
   feed its saved `.decisions.md` into `to-plan`.
 - **[plan-clash](../plan-clash/README.md)** — hardens the plan `to-plan` produces. Run
   `to-plan` first, then `plan-clash`.
+- **[next-slice](../next-slice/README.md)** — consumes the sliced plan `to-plan` writes:
+  at each slice boundary it re-anchors the plan's references and appends field notes,
+  but never re-plans.
 
 ## Changelog
 

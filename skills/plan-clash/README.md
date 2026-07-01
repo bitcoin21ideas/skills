@@ -126,8 +126,11 @@ closer-than-usual read before trusting it. This is a known limitation, not a war
 
 - **[to-plan](../to-plan/README.md)** — produces the implementation plan that
   `plan-clash` hardens. Run `to-plan` before `plan-clash`.
+- **[next-slice](../next-slice/README.md)** — runs downstream, once you start building:
+  at each slice boundary it re-anchors this hardened plan against the real code and hands
+  the next slice off to a fresh session.
 - **[pressure-test](../pressure-test/README.md)** — the upstream interrogation skill.
-  `pressure-test` → `to-plan` → `plan-clash` is the full pipeline.
+  `pressure-test` → `to-plan` → `plan-clash` → build → `next-slice` is the full loop.
 
 ## Changelog
 
