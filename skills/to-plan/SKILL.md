@@ -135,12 +135,10 @@ Close with:
 
 ## Hard rules
 
-- **Never interview the user.** Synthesize from the input. Reserve questions for genuine
-  gaps only the user can fill: intent, priority, business constraints.
+- **Never interview the user.** Synthesize from the input. Reserve questions for genuine gaps only the user can fill: intent, priority, business constraints.
 - **Never implement anything.** The plan is the deliverable.
 - **Never mutate the original decisions file** if one was provided.
-- **Every file path in the plan must exist in the repo, or be explicitly marked as a
-  new file to create.** Invented paths are P0 findings for plan-clash.
+- **Every file path in the plan must exist in the repo, or be explicitly marked as a new file to create.** Invented paths are P0 findings for plan-clash.
 - **No code snippets or function bodies** — interfaces and signatures only.
 
 ## Where this fits

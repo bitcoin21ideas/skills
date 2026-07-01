@@ -10,17 +10,6 @@ The output is shaped to be consumed immediately by [`plan-clash`](../plan-clash/
 
 You hand it a decisions context. It reads the codebase, proposes the module boundaries, **pauses for your confirmation**, and then writes a single `./<slug>.plan.md`: overview, settled decisions, code orientation, architecture, ordered implementation slices (each one a session gate), end-to-end verification, and explicit out-of-scope and risk sections. It never interviews you and never writes code — the plan is the deliverable.
 
-## Why
-
-`plan-clash`'s critic verifies a plan against the real codebase and cites `file:line`
-evidence. A plan written in prose — no named paths, no anchored tests — gives that
-critic nothing falsifiable to check, so the hardening pass has little to bite on.
-`to-plan` exists to produce the grounded, code-anchored artifact that makes the
-hardening loop worth running: every path is real (or explicitly marked new), every
-slice's "done when" is a test anchored to the repo's actual test pattern, and every
-unverifiable external claim is flagged in the critic's own language so it doesn't
-resurface as a surprise finding.
-
 ## Where it fits — the pipeline
 
 ```
@@ -65,15 +54,6 @@ A single Markdown file at `./<slug>.plan.md` with this structure:
 | 9. Idempotence & recovery | **Only** for destructive/migrational plans. |
 
 The original decisions file, if you provided one, is never mutated.
-
-## The confirmation gate
-
-Before writing the plan, `to-plan` stops and shows you the module boundaries it intends
-to build against — which modules, each interface (the test surface), and the integration
-points — and asks: *"Do these module boundaries look right before I write the plan?"* A
-wrong boundary would propagate into every slice and then into `plan-clash`'s critique, so
-this one cheap confirmation is deliberate. It does not proceed until you confirm or
-redirect.
 
 ## Install
 
